@@ -1,0 +1,10 @@
+black: true
+description: "A tortoise's shell is made y for hibernation"
+name: Tortoise
+species:
+  - Rep
+  - Repti
+  - Reptil
+  - Reptilia
+thumbnail: https://s25.postimg.org/4a63ryg6z/tortoise_thumbnails.jpg
+

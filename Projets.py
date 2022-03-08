@@ -6,9 +6,9 @@ import json
 import xmltodict
 from ruamel.yaml import YAML
 from dict2xml import dict2xml
-from func.xml_json import *
-from func.yaml_json import *
-from func.json_yaml import *
+from func import xml_json
+# from func import yaml_json
+# from func import json_yaml
 
 
 ##############################################
@@ -202,29 +202,6 @@ def dic_xml(dic):
 		fi = f.write(file)
 		print(fi)
 
-
-################################################################
-#   CONFIGURATION DE LA DIRECTION POUR CHARGER LES FICHIERS    #
-################################################################
-# def Open():
-# 	Directory = askopenfilename(initialdir=r"/home/abubakr/Bureau/LES_TP_SONATEL_ACADEMY/TP_Python",
-# 								title="Ouvrir le fichier",
-# 								filetypes=(("fichier json", "*.json"),
-# 										   ("fichier csv", "*.csv"),
-# 										   ("fichier xml", "*.xml"),
-# 										   ("fichier YAML", "*.yaml")))
-# 	ext = Directory.split(".")[-1]
-# 	if ext == "csv":
-# 		csv_path(Directory)
-# 	elif ext == "xml":
-# 		dic = dic_xml(Directory)
-# 		return dic
-# 	elif ext == "json":
-# 		dic = dic_to_json(Directory)
-# 		return dic
-# 	elif ext == "yaml":
-# 		dic = dict_yaml(Directory)
-# 		return dic
 
 
 print("##################################################")

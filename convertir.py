@@ -1,9 +1,13 @@
+from json import *
 import json
 import csv
 import xml.etree.ElementTree as T
+from csv import DictReader as csv_load
+from csv import DictWriter as csv_write
 from sqlalchemy import JSON
 import yaml
-import xmltodict
+from Conv import *
+from xmltodict import parse
 
 ###########################################################
 #                            JSON                         #
@@ -37,38 +41,20 @@ def dict_to_yaml(dic):
 ##############################################################
 #                            CSV                             #
 ##############################################################
-def dict_to_csv(dic):
-    # dic =  [
-	# 	{'id': 456, 'name': 'Babacar', 'skills': 'Python'},
-	# 	{'id': 892, 'name': 'Adama', 'skills': 'Java'},
-	# 	{'id': 178, 'name': 'Ousseynou', 'skills': 'Mongo db'},
-	# 	{'id': 155, 'name': 'Samba', 'skills': 'Sql'},
-	# 	{'id': 299, 'name': 'Matthieu', 'skills': 'Ruby'},
-	# 	]
-    
-	# header = ['id', 'name', 'skills']
-	header = ['name', 'rollnumber', 'age']
-	with open('DATA.csv', 'w') as csvfile:
-		writer = csv.DictWriter(csvfile, fieldnames = header)
-		writer.writeheader()
-		writer.writerows(dic)
-
+def dict_to_csv(data):
+    with open('file.csv', 'w') as f:   
+        data = [data]
+        fieldnames = data[0].keys()
+        output = csv_write(f, fieldnames)
+        output.writeheader()
+        for elem in data:
+            output.writerow(elem)
 
 
 #############################################################
 #                             XML                           #
 #############################################################
-from xml.etree.ElementTree import Element,tostring 
-  
-def dict_to_xml(tag, d): 
-  
-    elem = Element(tag) 
-    for key, val in d.items(): 
-        
-        
-        child = Element(key) 
-        child.text = str(val) 
-        elem.append(child) 
-          
-    return elem 
-  
+
+def dict_to_xml(file):
+    reader = loads(json.dumps(parse(file.read())))
+    return reader

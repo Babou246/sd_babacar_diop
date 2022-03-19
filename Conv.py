@@ -1,6 +1,8 @@
 #  Import des modules
 import xml.etree.ElementTree as T
 from sqlalchemy import JSON
+from csv import DictReader as csv_load
+from csv import DictWriter as csv_write
 import yaml
 import xmltodict
 from pathlib import Path
@@ -8,7 +10,6 @@ from ruamel.yaml import YAML
 from dict2xml import dict2xml
 from convertir import *
 from dict import *
-
 import csv
 import json
 from pathlib import Path
@@ -48,11 +49,13 @@ import csv
 file = 'doc.csv'
 
 def csv_to_dict(file):
-    with open(file,'r') as f:
-        c = csv.DictReader(f)
-        for i in c:
-            print(i)
-print(csv_dict((file)))
+    with open('file.csv', 'w') as f:   
+        data = [data]
+        fieldnames = data[0].keys()
+        output = csv_write(f, fieldnames)
+        output.writeheader()
+        for elem in data:
+            output.writerow(elem)
 
 
 ######################### XML ##########################
